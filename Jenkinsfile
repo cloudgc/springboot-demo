@@ -87,8 +87,9 @@ pipeline {
          stage('ReportTest'){
 
             steps{
-                echo "start test"
-                junit healthScaleFactor:  0.0 testResults '**/target/surefire-reports/*.xml'
+                 script {
+                    junit healthScaleFactor: 0.0 testResults '**/target/surefire-reports/*.xml'
+                }
             }
          }
 
