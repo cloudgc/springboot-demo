@@ -13,7 +13,6 @@ pipeline {
     //config   system tools
     tools {
             maven 'mvn3'
-            docker 'docker'
     }
 
 
