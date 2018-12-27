@@ -8,13 +8,10 @@ pipeline {
 
     agent any
 
-
-
     //config   system tools
     tools {
             maven 'mvn3'
     }
-
 
     stages {
         stage('CodeClone'){
@@ -24,7 +21,6 @@ pipeline {
             }
 
         }
-
 
          stage('Maven') {
 
