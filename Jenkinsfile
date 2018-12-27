@@ -86,7 +86,10 @@ pipeline {
 
          stage('ReportTest'){
 
-            junit healthScaleFactor:  0.0 testResults '**/target/surefire-reports/*.xml'
+            steps{
+                junit healthScaleFactor:  0.0 testResults '**/target/surefire-reports/*.xml'
+            }
+
 
          }
 
