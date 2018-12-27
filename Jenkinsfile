@@ -74,10 +74,7 @@ pipeline {
 
             steps {
 
-               //sh "docker run -d $dockerImage"
-               script {
-                   dockerImage.run()
-               }
+               sh "docker run -d $dockerImage"
 
             }
 
