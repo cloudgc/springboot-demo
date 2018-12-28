@@ -1,3 +1,4 @@
+def globalVar = "0"
 pipeline {
 
     environment {
@@ -83,10 +84,10 @@ pipeline {
                        // sh "docker rmi ${registry}:$BUILD_NUMBER"
                     }
 
-                    env.hasContainer= sh(       script: "docker ps -a|grep spring-demo |wc -l",
+                    globalVar = sh(       script: "docker ps -a|grep spring-demo |wc -l",
                                             returnStdout: true
                                    ).trim()
-                    echo env.hasContainer
+
                 }
             }
 
@@ -96,9 +97,9 @@ pipeline {
 
             when{
 
-                allOf {
-                    environment name: 'hasContainer', value: '0'
-                    }
+                expression {
+                    return globalVar == '1';
+                }
             }
 
             steps {
@@ -113,9 +114,9 @@ pipeline {
 
             when{
 
-                allOf {
-                    environment name: 'hasContainer', value: '1'
-                    }
+                expression {
+                    return globalVar == '0';
+                }
             }
 
             steps {
