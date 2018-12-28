@@ -4,6 +4,7 @@ pipeline {
         registry = "cloudfun/demo-spring"
         registryCredential = 'dockerhub'
         dockerImage = ''
+        hasContainer = 0
     }
 
     agent any
@@ -64,12 +65,33 @@ pipeline {
                         //remove local image
                        // sh "docker rmi ${registry}:$BUILD_NUMBER"
                     }
+
+                    hasContainer= sh(       script: "docker ps -a|grep spring-demo |wc -l",
+                                            returnStdout: true
+                                   ).trim()
                 }
             }
 
         }
 
-        stage('DockerDeploy'){
+        stage('DockerDeploy-over'){
+
+            when{
+
+                allOf {
+                    environment name: 'hasContainer', value: 0
+                    }
+            }
+
+            steps {
+                script{
+                    sh "docker run -d --name spring-demo -p  8098:8080 ${registry}:$BUILD_NUMBER  "
+                }
+            }
+
+        }
+
+        stage('DockerDeploy-new'){
 
             steps {
                 script{
