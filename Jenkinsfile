@@ -62,9 +62,7 @@ pipeline {
                     docker.withRegistry('', registryCredential ) {
                         dockerImage.push()
                         //remove local image
-                        dockerImage.rmi()
-
-                        dockerImage.run()
+                       // sh "docker rmi ${registry}:$BUILD_NUMBER"
                     }
                 }
             }
@@ -75,7 +73,7 @@ pipeline {
 
             steps {
                 script{
-                    dockerImage.run()
+                    sh "docker run -p 8098:8080 ${registry}:$BUILD_NUMBER  "
                 }
             }
 
