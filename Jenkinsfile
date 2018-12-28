@@ -46,9 +46,9 @@ pipeline {
 
             steps{
 
-               //  script {
-               //     junit healthScaleFactor: 0.0 testResults '**/target/surefire-reports/*.xml'
-               // }
+                 script {
+                    junit allowEmptyResults: true, healthScaleFactor: 0.0, testResults: '**/target/surefire-reports/*.xml'
+                }
                 sh "echo send test report ..."
             }
          }
@@ -72,8 +72,9 @@ pipeline {
         stage('DockerDeploy'){
 
             steps {
-
-               sh "docker run -d $dockerImage"
+               sh "docker stop spring-demo"
+               sh "docker rm spring-demo"
+               sh "docker run -d --name spring-demo $dockerImage"
 
             }
 
