@@ -63,6 +63,8 @@ pipeline {
                         dockerImage.push()
                         //remove local image
                         dockerImage.rmi()
+
+                        dockerImage.run()
                     }
                 }
             }
