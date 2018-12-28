@@ -43,15 +43,32 @@ pipeline {
 
          }
 
-         stage('ReportTest'){
+         stage('ParallelStage'){
 
-            steps{
+           parallel {
+                stage('ReportTest'){
 
-                 script {
-                    junit allowEmptyResults: true, healthScaleFactor: 0.0, testResults: '**/target/surefire-reports/*.xml'
+                    steps{
+                         script {
+                            junit allowEmptyResults: true, healthScaleFactor: 0.0, testResults: '**/target/surefire-reports/*.xml'
+                        }
+                        sh "echo send test report ..."
+                    }
                 }
-                sh "echo send test report ..."
-            }
+
+                stage('SonaQube'){
+
+                    steps {
+
+                        echo "send code to sonaqube ====>>>>"
+
+                    }
+
+                }
+
+           }
+
+
          }
 
          stage('DockerBuild'){
