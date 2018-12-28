@@ -46,10 +46,9 @@ pipeline {
 
             steps{
 
-                 script {
-                    junit healthScaleFactor: 0.0 testResults '**/target/surefire-reports/*.xml'
-                }
-
+               //  script {
+               //     junit healthScaleFactor: 0.0 testResults '**/target/surefire-reports/*.xml'
+               // }
                 sh "echo send test report ..."
             }
          }
