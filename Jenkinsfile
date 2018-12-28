@@ -72,10 +72,9 @@ pipeline {
         stage('DockerDeploy'){
 
             steps {
-               sh "docker stop spring-demo"
-               sh "docker rm spring-demo"
-               sh "docker run -d --name spring-demo $dockerImage"
-
+                script{
+                    dockerImage.run()
+                }
             }
 
         }
