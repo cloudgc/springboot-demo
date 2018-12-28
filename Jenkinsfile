@@ -83,10 +83,10 @@ pipeline {
                        // sh "docker rmi ${registry}:$BUILD_NUMBER"
                     }
 
-                    hasContainer= sh(       script: "docker ps -a|grep spring-demo |wc -l",
+                    env.hasContainer= sh(       script: "docker ps -a|grep spring-demo |wc -l",
                                             returnStdout: true
                                    ).trim()
-                    sh "echo has:$hasContainer"
+                    echo env.hasContainer
                 }
             }
 
