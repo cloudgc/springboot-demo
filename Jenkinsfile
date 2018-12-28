@@ -4,7 +4,7 @@ pipeline {
         registry = "cloudfun/demo-spring"
         registryCredential = 'dockerhub'
         dockerImage = ''
-        hasContainer = 0
+        hasContainer = '0'
     }
 
     agent any
@@ -79,7 +79,7 @@ pipeline {
             when{
 
                 allOf {
-                    environment name: 'hasContainer', value: 0
+                    environment name: 'hasContainer', value: '0'
                     }
             }
 
@@ -96,7 +96,7 @@ pipeline {
             when{
 
                 allOf {
-                    environment name: 'hasContainer', value: 1
+                    environment name: 'hasContainer', value: '1'
                     }
             }
 
