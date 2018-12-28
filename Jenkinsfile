@@ -93,7 +93,7 @@ pipeline {
 
         }
 
-        stage('DockerDeploy-over'){
+        stage('DockerDeploy-new'){
 
             when{
 
@@ -111,7 +111,7 @@ pipeline {
 
         }
 
-        stage('DockerDeploy-new'){
+        stage('DockerDeploy-re'){
 
             when{
 
