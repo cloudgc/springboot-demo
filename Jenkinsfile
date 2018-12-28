@@ -86,7 +86,7 @@ pipeline {
                     hasContainer= sh(       script: "docker ps -a|grep spring-demo |wc -l",
                                             returnStdout: true
                                    ).trim()
-                    sh "echo "has:"$hasContainer"
+                    sh "echo has:$hasContainer"
                 }
             }
 
