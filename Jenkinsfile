@@ -73,7 +73,9 @@ pipeline {
 
             steps {
                 script{
-                    sh "docker run -p 8098:8080 ${registry}:$BUILD_NUMBER  "
+                    sh "docker stop spring-demo"
+                    sh "docker rm spring-demo"
+                    sh "docker run -d --name spring-demo -p  8098:8080 ${registry}:$BUILD_NUMBER  "
                 }
             }
 
