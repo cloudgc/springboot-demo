@@ -93,6 +93,13 @@ pipeline {
 
         stage('DockerDeploy-new'){
 
+            when{
+
+                allOf {
+                    environment name: 'hasContainer', value: 1
+                    }
+            }
+
             steps {
                 script{
                     sh "docker stop spring-demo"
