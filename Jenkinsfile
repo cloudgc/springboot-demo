@@ -98,12 +98,13 @@ pipeline {
             when{
 
                 expression {
-                    return globalVar == '1';
+                    return globalVar == '0';
                 }
             }
 
             steps {
                 script{
+
                     sh "docker run -d --name spring-demo -p  8098:8080 ${registry}:$BUILD_NUMBER  "
                 }
             }
@@ -115,7 +116,7 @@ pipeline {
             when{
 
                 expression {
-                    return globalVar == '0';
+                    return globalVar == '1';
                 }
             }
 
